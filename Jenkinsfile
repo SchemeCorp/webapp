@@ -29,7 +29,16 @@ pipeline {
         sh 'bash owasp-dependency-check.sh'
       }
     }
-  
+    
+    stage ('SAST'){
+      steps {
+        withSonarQubeEnv('sonarqubetoken'){
+          sh 'mvn sonar:sonar'
+          sh 'cat target/sonar/report-task.txt'
+        }
+      }
+    }
+    
     stage ('Build') {
       steps {
       sh 'mvn clean package'
