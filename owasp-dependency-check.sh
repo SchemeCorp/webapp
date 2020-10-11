@@ -32,4 +32,5 @@ docker run --rm \
     # Use suppression like this: (where /src == $pwd)
     # --suppression "/src/security/dependency-check-suppression.xml"
 
-echo $(pwd)
+echo "Report:"
+cat $(pwd)/odc-reports/dependency-check-report.xml
